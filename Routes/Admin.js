@@ -1,7 +1,6 @@
 const express = require("express");
 const {bookcon} = require("../Controllers/book_con")
 const {AuthorCon} = require("../Controllers/Author_con")
-const {featureCon} = require("../Controllers/feutured_con")
 const {authcon} = require("../Controllers/Authenticator_con")
 const {AdminMiddleware} = require("../AdminMiddleware/Adminmiddleware")
 
@@ -12,7 +11,6 @@ adminApp.use(AdminMiddleware)
 
    let bookcontroller = new bookcon()
    let Authinticator =  new authcon()
-   let featurecontroller = new featureCon()
    let AuthorController = new AuthorCon()
 
 //list
@@ -27,16 +25,6 @@ adminApp.delete("/product/:id", bookcontroller.delete);
 //change status
 adminApp.put("/product/:id/:status", bookcontroller.changeStatus);
 
-// -----------------
-//list
-adminApp.get("/", featurecontroller.list);
-//create
-adminApp.post("/", featurecontroller.create);
-//update
-adminApp.put("/:id", featurecontroller.update);
-//delete
-adminApp.delete("/:id", featurecontroller.delete);
-// -----------------
 // -----------------
 //list
 adminApp.get("/Authors", AuthorController.list);
